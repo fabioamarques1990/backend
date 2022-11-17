@@ -41,7 +41,7 @@ class Contenedor {
     async getById(id) {
         const idEncontrado = await this.productos.find((ele) => ele.id === id)
         try {
-            console.log(idEncontrado)
+            return idEncontrado;
         }
         catch (error) {
             console.log("Error getById()");
@@ -52,7 +52,7 @@ class Contenedor {
     async getAll() {
         try {
             let data = await fs.readFile(this.ruta, 'utf-8')
-            return console.log(data);
+            return data;
         }
         catch (error) {
             return console.log([]);
