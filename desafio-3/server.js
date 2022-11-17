@@ -1,11 +1,7 @@
-// Llamo librerias
-
 const { promises: fs } = require('fs');
 const express = require('express');
 
 const app = express();
-
-// Clase
 
 class Contenedor {
     constructor(ruta) {
@@ -13,8 +9,6 @@ class Contenedor {
         this.productos = [];
 
     }
-
-    //Funciones
 
     saveId() {
         const length = this.productos.length
@@ -77,8 +71,6 @@ contenedor1.save({ "title": "gorra", "price": 80, "thumbnail": "www.gorra.com" }
 contenedor1.save({ "title": "chaleco", "price": 450, "thumbnail": "www.chaleco.com" })
 contenedor1.save({ "title": "zapatos", "price": 900, "thumbnail": "www.zapatos.com" })
 
-
-// Llamar al servidor
 
 app.get('/', (req, res) => {
     res.send('Desafio03')
