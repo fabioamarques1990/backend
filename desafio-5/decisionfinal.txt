@@ -1,0 +1,11 @@
+Cual escojer de entre todos? EJS, creo yo :)
+
+La estructura se asemeja mas a React, y va mas de encuentro a como me gusta la organizacion.
+Ademas, sabe leer HTML.
+
+Bueno, por lo poco que estuve viendo, los tres son similares y tienen sus pequenos cambios, cada uno con su chiste.
+Pero para Pug, por ejemplo, tuve que usar el traductor, y se me complico un poco mas.
+
+Nada, creo estuve mas a gusto con EJS, pero igual ni es cierto con el tiempo y la practica, pero espero que si ahahahah
+
+PS: Otra vez, perdon la falta de acentos, rayos con este teclado americano.
