@@ -1,0 +1,20 @@
+[
+  {
+    "producto": "Teclado",
+    "precio": "250",
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-2/24/bxs-keyboard-512.png",
+    "id": 6
+  },
+  {
+    "producto": "Shorts",
+    "precio": "700",
+    "thumbnail": "https://cdn2.iconfinder.com/data/icons/summer-flat-11/272/summer-swimsuit-swim-suit-shorts-boxers-swimwear-512.png",
+    "id": 2
+  },
+  {
+    "producto": "Hamburguesa",
+    "precio": "200",
+    "thumbnail": "https://cdn0.iconfinder.com/data/icons/foody-icons/32/FoodyIcons_color-06-512.png",
+    "id": 3
+  }
+]
