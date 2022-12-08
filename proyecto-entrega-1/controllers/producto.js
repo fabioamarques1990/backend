@@ -1,7 +1,7 @@
-const prodContainer = require("../routes/productos.js");
+import {prodContainer} from "../routes/productos.js";
 
 
-async function getProductos(req, res) {
+export async function getProductos(req, res) {
     try {
         const productos = await prodContainer.getAll();
         res.json(productos);
@@ -10,7 +10,7 @@ async function getProductos(req, res) {
     }
 };
 
-async function getProductosID(req, res) {
+export async function getProductosID(req, res) {
     const id = req.params.id;
     try {
         const producto = await prodContainer.getById(id);
@@ -20,7 +20,7 @@ async function getProductosID(req, res) {
     }
 };
 
-async function postProducto(req, res) {
+export async function postProducto(req, res) {
     const newProducto = {
         timestamp: Date.now(),
         nombre: request.body.nombre,
@@ -34,7 +34,7 @@ async function postProducto(req, res) {
     res.json({nuevoPorducto:idNew});
 };
 
-async function putProducto(req, res) {
+export async function putProducto(req, res) {
     const updatedProducto = {
         timestamp: Date.now(),
         nombre: request.body.nombre,
@@ -49,7 +49,7 @@ async function putProducto(req, res) {
     }
 
 
-async function deleteProducto(req, res) {
+export async function deleteProducto(req, res) {
    // const id = await productosContenedor.deleteById(req.params.id);
    // res.json({deletedProduct: id});
    res.json(prodContainer.deleteProducto(req.params.id));
@@ -57,10 +57,10 @@ async function deleteProducto(req, res) {
 
 
 
-module.exports = {
+/* module.exports = {
     getProductos,
     getProductosID,
     postProducto,
     putProducto,
     deleteProducto,
-};
+}; */

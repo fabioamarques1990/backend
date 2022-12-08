@@ -1,12 +1,12 @@
-const express = require("express");
-const Contenedor = require("../containers/Contenedor.js");
-const administrador = require ("../controllers/permisoAdmin.js");
-const { getProductos, postProducto, putProducto, deleteProducto } = require ("../controllers/producto.js");
+import express from"express";
+import Contenedor from"../containers/Contenedor.js";
+import {administrador} from "../controllers/permisoAdmin.js";
+import { getProductos, postProducto, putProducto, deleteProducto }from "../controllers/producto.js";
 
 const { Router } = express;
 const prodRouter = Router();
 
-const prodContainer = new Contenedor("../containers/productos.txt");
+export const prodContainer = new Contenedor("../containers/productos.txt");
 
 prodRouter.get("/:id?", getProductos);
 
@@ -16,5 +16,5 @@ prodRouter.put("/:id", administrador, putProducto);
 
 prodRouter.delete("/:id", administrador, deleteProducto);
 
-module.exports = prodRouter;
-module.exports = prodContainer;
+export default prodRouter;
+//module.exports = prodContainer;

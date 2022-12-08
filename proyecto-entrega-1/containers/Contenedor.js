@@ -1,9 +1,9 @@
 // Llamo librerias
 
-const { promises: fs } = require('fs');
-const express = require ('express');
+import fs from'fs';
+//const express = require ('express');
 
-const app = express ();
+//const app = express ();
 
 // Clase
 
@@ -35,7 +35,7 @@ class Contenedor {
         })
 
         try {
-            await fs.writeFile(this.ruta, JSON.stringify(this.productos, null, 2));
+            await fs.promises.writeFile(this.ruta, JSON.stringify(this.productos, null, 2));
         }
         catch (error) {
             console.log("Error en save()")      
@@ -57,7 +57,7 @@ class Contenedor {
 
      async getAll() {
         try {
-            let data = await fs.readFile(this.ruta, 'utf-8')
+            let data = await fs.promises.readFile(this.ruta, 'utf-8')
             this.productos = JSON.parse(data);
             return this.productos;
         }
@@ -70,4 +70,4 @@ class Contenedor {
 
 }
 
-module.exports = Contenedor
+export default Contenedor

@@ -1,7 +1,7 @@
-const express = require("express");
-const routerProyecto = require ( "./routes/proyecto.js");
+import express from "express";
+import routerProyecto from  "./routes/proyecto.js";
 
-const admin = false;
+export const admin = false;
 
 const app = express();
 app.use(express.json());
@@ -15,4 +15,3 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Listening in ${PORT}`));
 
-module.exports = admin;

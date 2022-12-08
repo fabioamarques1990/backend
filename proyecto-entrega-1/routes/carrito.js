@@ -1,11 +1,11 @@
-const express = require("express");
-const Contenedor = require("../containers/Contenedor.js");
-const { postCarrito, deleteCarrito, getProductosCarrito, postProductoCarrito, deleteProductoCarrito } = require ("../controllers/carrito.js");
+import express from "express";
+import Contenedor from "../containers/Contenedor.js";
+import { postCarrito, deleteCarrito, getProductosCarrito, postProductoCarrito, deleteProductoCarrito } from  "../controllers/carrito.js";
 
 const { Router } = express;
 const carritoRouter = Router();
 
-const carritoContainer = new Contenedor("../containers/carito.txt");
+export const carritoContainer = new Contenedor("../containers/carito.txt");
 
 carritoRouter.delete("/:id?", deleteCarrito);
 
@@ -17,6 +17,6 @@ carritoRouter.post("/:id/productos", postProductoCarrito);
 
 carritoRouter.delete("/:id/productos/:id_prod", deleteProductoCarrito);
 
-module.exports = carritoRouter;
-module.exports = carritoContainer;
+export default carritoRouter;
+//module.exports = carritoContainer;
 

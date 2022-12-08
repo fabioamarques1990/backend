@@ -1,6 +1,6 @@
-const admin =  require ("../server.js");
+import {admin} from "../server.js";
 
-function administrador (req, res, next) {
+export function administrador (req, res, next) {
   admin
     ? next()
     : res
@@ -12,4 +12,4 @@ function administrador (req, res, next) {
         });
 }
 
-module.exports = administrador
+//module.exports = administrador
