@@ -1,22 +1,21 @@
 import express from "express";
-import Contenedor from "../containers/Contenedor.js";
-import { postCarrito, deleteCarrito, getProductosCarrito, postProductoCarrito, deleteProductoCarrito } from  "../controllers/carrito.js";
+import Container from "../containers/Container.js";
+import {postCart, deleteCart, getProductsInCart, postProductInCart, deleteProductInCart,} from "../controllers/carrito.js";
+
 
 const { Router } = express;
-const carritoRouter = Router();
+const cartRouter = Router();
 
-export const carritoContainer = new Contenedor("../containers/carito.txt");
+export const cartContainer = new Container("./containers/carts.txt");
 
-carritoRouter.delete("/:id?", deleteCarrito);
+cartRouter.delete("/:id?", deleteCart);
 
-carritoRouter.post("/", postCarrito);
+cartRouter.post("/", postCart);
 
-carritoRouter.get("/:id/productos", getProductosCarrito);
+cartRouter.get("/:id/productos", getProductsInCart);
 
-carritoRouter.post("/:id/productos", postProductoCarrito);
+cartRouter.post("/:id/productos/:id_prod", postProductInCart);
 
-carritoRouter.delete("/:id/productos/:id_prod", deleteProductoCarrito);
+cartRouter.delete("/:id/productos/:id_prod", deleteProductInCart);
 
-export default carritoRouter;
-//module.exports = carritoContainer;
-
+export default cartRouter;

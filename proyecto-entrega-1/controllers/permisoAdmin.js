@@ -1,4 +1,4 @@
-import {admin} from "../server.js";
+import { admin } from "../server.js";
 
 export function administrador (req, res, next) {
   admin
@@ -11,5 +11,3 @@ export function administrador (req, res, next) {
           route: req.originalUrl,
         });
 }
-
-//module.exports = administrador

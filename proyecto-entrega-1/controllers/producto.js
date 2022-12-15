@@ -1,66 +1,46 @@
-import {prodContainer} from "../routes/productos.js";
+import { prodContainer } from "../routes/productos.js";
 
-
-export async function getProductos(req, res) {
-    try {
-        const productos = await prodContainer.getAll();
-        res.json(productos);
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export async function getProductosID(req, res) {
-    const id = req.params.id;
-    try {
-        const producto = await prodContainer.getById(id);
-        res.json(producto);
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export async function postProducto(req, res) {
-    const newProducto = {
-        timestamp: Date.now(),
-        nombre: req.body.nombre,
-        descripcion: req.body.descripcion,
-        codigo: req.body.codigo,
-        precio: req.body.precio,
-        foto: req.body.foto,
-        stock: req.body.stock,
-    }
-    const idNew = await prodContainer.save(newProducto);
-    res.json({nuevoPorducto:idNew});
-};
-
-export async function putProducto(req, res) {
-    const updatedProducto = {
-        timestamp: Date.now(),
-        nombre: req.body.nombre,
-        descripcion: req.body.descripcion,
-        codigo: req.body.codigo,
-        precio: req.body.precio,
-        foto: req.body.foto,
-        stock: req.body.stock,
-    }
-    const id = await prodContainer.update(req.params.id, updatedProducto);
-    res.json({updatedProducto: [prodContainer.getById(id)]});
-    }
-
-
-export async function deleteProducto(req, res) {
-   // const id = await productosContenedor.deleteById(req.params.id);
-   // res.json({deletedProduct: id});
-   res.json(prodContainer.deleteProducto(req.params.id));
+export async function deleteProducts(req, res) {
+  const id = await prodContainer.deleteById(req.params.id);
+  res.json({ status: "ok", deletedProduct: id });
 }
 
+export async function getProducts(req, res) {
+  console.log(req.params.id);
+  res.json(
+      !req.params.id
+        ? await prodContainer.getAll()
+        : await prodContainer.getById(req.params.id)
+    );
+}
 
+export async function postProducts(req, res) {
+  const { nombre, descripcion, codigo, foto, precio, stock } = req.body;
+  const newProduct = {
+    timestamp: Date.now(),
+    nombre,
+    descripcion,
+    codigo,
+    foto,
+    precio,
+    stock,
+  };
+  const idNew = await prodContainer.save(newProduct);
+  res.json({ status: "ok", newProductId: idNew });
+}
 
-/* module.exports = {
-    getProductos,
-    getProductosID,
-    postProducto,
-    putProducto,
-    deleteProducto,
-}; */
+export async function putProducts(req, res) {
+    const { nombre, descripcion, codigo, foto, precio, stock } = req.body;
+    const updatedProduct = {
+      timestamp: Date.now(),
+      nombre,
+      descripcion,
+      codigo,
+      foto,
+      precio,
+      stock,
+    };
+    const id = await prodContainer.update(req.params.id, updatedProduct);
+    res.json({ status: "ok", updatedProduct: [prodContainer.getById(id)] });
+  }
+  

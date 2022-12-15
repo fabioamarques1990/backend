@@ -1,50 +1,52 @@
-import {carritoContainer} from"../routes/carrito.js";
-import {prodContainer} from"../routes/productos.js";
+import { cartContainer } from "../routes/carrito.js";
+import { prodContainer } from "../routes/productos.js";
 
-export async function deleteCarrito (req, res) {
-  const id = await carritoContainer.deleteById(req.params.id);
-  res.json({ carritoBorrado: id });
-}
 
-export async function deleteProductoCarrito (req, res) {
-  const { id, id_prod } = req.params;
-  const cart = carritoContainer.getById(id);
-  const newCartProducts = cart.productos.filter((producto) => {
-    return producto.id != id_prod;
-  });
-  cart.productos = newCartProducts;
-  const updatedCartId = await carritoContainer.update(id, cart);
-  res.json({updatedCart: updatedCartId});
-}
-
-export async function getProductosCarrito(req, res) {
-  const cart = carritoContainer.getById(req.params.id);
+export async function getProductsInCart(req, res) {
+  const cart = await cartContainer.getById(req.params.id);
   res.json(cart.productos);
 }
 
-export async function postCarrito(req, res) {
-  const newCart = { timestamp: Date.now(), productos: [] };
-  const idNew = await carritoContainer.save(newCart);
-  res.json({IdCarrito: idNew });
+
+export async function deleteCart(req, res) {
+  const id = await cartContainer.deleteById(req.params.id);
+  res.json({ status: "ok", deletedCart: id });
 }
 
-export async function postProductoCarrito(req, res) {
-  const cartId = req.params.id;
-  const productId = req.body.id;
+export async function deleteProductInCart(req, res) {
+  const { id, id_prod } = req.params;
+  const cart = cartContainer.getById(id);
 
-  const cart = carritoContainer.getById(cartId);
+  const newCartProducts = cart.productos.filter((producto) => {
+    return producto.id != id_prod;
+  });
+
+  cart.productos = newCartProducts;
+  const updatedCartId = await cartContainer.update(id, cart);
+  res.json({
+      status: "ok",
+      updatedCart: updatedCartId,
+      productDeletedId: id_prod,
+    });
+}
+
+
+
+export async function postCart(req, res) {
+  const newCart = { timestamp: Date.now(), productos: [] };
+  const idNew = await cartContainer.save(newCart);
+  res.status(201).json({ status: "ok", newCartId: idNew });
+}
+
+export async function postProductInCart(req, res) {
+  const cartId = req.params.id;
+  const productId = req.params.id_prod;
+
+  const cart = cartContainer.getById(cartId);
   const product = prodContainer.getById(productId);
 
   cart.productos.push(product);
   console.log(cart);
-  const updatedCartId = await carritoContainer.update(cartId, cart);
-  res.json({ updatedCart: updatedCartId });
+  const updatedCartId = await cartContainer.update(cartId, cart);
+  res.json({ status: "ok", updatedCart: updatedCartId, productAdded: product });
 }
-
-/* module.exports = {
-    postCarrito,
-    deleteCarrito,
-    getProductosCarrito,
-    postProductoCarrito,
-    deleteProductoCarrito
-} */

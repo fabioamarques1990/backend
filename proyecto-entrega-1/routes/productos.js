@@ -1,20 +1,21 @@
 import express from "express";
-import Contenedor from "../containers/Contenedor.js";
-import {administrador} from "../controllers/permisoAdmin.js";
-import { getProductos, postProducto, putProducto, deleteProducto } from "../controllers/producto.js";
+import Container from "../containers/Container.js";
+import { administrador } from "../controllers/permisoAdmin.js";
+import { getProducts, postProducts, putProducts, deleteProducts } from "../controllers/producto.js";
+
+//import { validId, existsProduct } from "../controllers/products/productsValidations.js";
 
 const { Router } = express;
 const prodRouter = Router();
 
-export const prodContainer = new Contenedor("../containers/productos.txt");
+export const prodContainer = new Container("./containers/products.txt");
 
-prodRouter.get("/:id?", getProductos);
+prodRouter.get("/:id?", getProducts);
 
-prodRouter.post("/", administrador , postProducto);
+prodRouter.post("/", administrador , postProducts);
 
-prodRouter.put("/:id", administrador, putProducto);
+prodRouter.put("/:id", administrador, putProducts);
 
-prodRouter.delete("/:id", administrador, deleteProducto);
+prodRouter.delete("/:id", administrador, deleteProducts);
 
 export default prodRouter;
-//module.exports = prodContainer;
