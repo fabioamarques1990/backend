@@ -1,13 +1,14 @@
 // Llamo librerias
 
 //const { promises: fs } = require('fs');
-const knex = require('knex');
+//const knex = require('knex');
+import knex from "knex";
 
 // Clase
 
-class Contenedor {
+export class Contenedor {
     constructor(options, table) {
-        this.knex = knex(options);
+        this.knex = knex (options);
         this.table = table;
     }
 
@@ -38,13 +39,13 @@ class Contenedor {
 
     //Funciones
 
-
+   
     getAll() {
         return this.knex(this.table).select('*')
     }
 
-    getById() {
-        return this.knex(this.table).select('*').where("id", "=", id)
+    getById (){
+        return this.knex(this.table).select('*').where("id","=",id)
     }
 
     deleteById(id) {
@@ -60,7 +61,7 @@ class Contenedor {
     }
 
     updateStock(stock, id) {
-        return this.knex.from(this.table).where('id', '=', id).update({ stock: stock })
+        return this.knex.from(this.table).where('id', '=', id).update({stock: stock})
     }
 
     close() {
@@ -68,4 +69,4 @@ class Contenedor {
     }
 }
 
-module.exports = Contenedor
+//module.exports = Contenedor
