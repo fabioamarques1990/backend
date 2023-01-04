@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import * as model from "./modelsMongo/producto.js";
-import * as model from "./modelsMongo/carrito.js";
+import * as model from "./data/modelsMongo/producto.js";
+// import * as model from "./modelsMongo/carrito.js";
 
 
 class ContainerMongo {
@@ -72,3 +72,5 @@ class ContainerMongo {
   }
 
 }
+
+export default ContainerMongo
